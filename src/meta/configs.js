@@ -17,66 +17,65 @@ Meta.config = {};
 
 // called after data is loaded from db
 function deserialize(config) {
-    const deserialized = {};
+	const deserialized = {};
 
-    Object.keys(config).forEach((key) => {
-        const defaultType = typeof defaults[key];
-        const type = typeof config[key];
-        const number = parseFloat(config[key]);
+	Object.keys(config).forEach((key) => {
+		const defaultType = typeof defaults[key];
+		const type = typeof config[key];
+		const number = parseFloat(config[key]);
 
-        deserialized[key] = handleTypeConversion(defaultType, type, config[key], number, key);
-    });
+		deserialized[key] = handleTypeConversion(defaultType, type, config[key], number, key);
+	});
 
-    return deserialized;
+	return deserialized;
 }
 
 function handleTypeConversion(defaultType, type, value, number, key) {
-    if (defaultType === 'string' && type === 'number') {
-        return String(value);
-    }
+	if (defaultType === 'string' && type === 'number') {
+		return String(value);
+	}
 
-    if (defaultType === 'number' && type === 'string') {
-        return handleNumberConversion(number, value, key);
-    }
+	if (defaultType === 'number' && type === 'string') {
+		return handleNumberConversion(number, value, key);
+	}
 
-    if (value === 'true') {
-        return true;
-    }
+	if (value === 'true') {
+		return true;
+	}
 
-    if (value === 'false') {
-        return false;
-    }
+	if (value === 'false') {
+		return false;
+	}
 
-    if (value === null) {
-        return defaults[key];
-    }
+	if (value === null) {
+		return defaults[key];
+	}
 
-    if (defaultType === 'undefined' && !isNaN(number) && isFinite(value)) {
-        return number;
-    }
+	if (defaultType === 'undefined' && !isNaN(number) && isFinite(value)) {
+		return number;
+	}
 
-    if (Array.isArray(defaults[key]) && !Array.isArray(value)) {
-        return handleArrayConversion(value, key);
-    }
+	if (Array.isArray(defaults[key]) && !Array.isArray(value)) {
+		return handleArrayConversion(value, key);
+	}
 
-    return value;
+	return value;
 }
 
 function handleNumberConversion(number, value, key) {
-    if (!isNaN(number) && isFinite(value)) {
-        return number;
-    } else {
-        return defaults[key];
-    }
+	if (!isNaN(number) && isFinite(value)) {
+		return number;
+	}
+	return defaults[key];
 }
 
 function handleArrayConversion(value, key) {
-    try {
-        return JSON.parse(value || '[]');
-    } catch (err) {
-        winston.error(err.stack);
-        return defaults[key];
-    }
+	try {
+		return JSON.parse(value || '[]');
+	} catch (err) {
+		winston.error(err.stack);
+		return defaults[key];
+	}
 }
 
 
