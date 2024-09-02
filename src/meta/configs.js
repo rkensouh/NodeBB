@@ -30,6 +30,7 @@ function deserialize(config) {
 	return deserialized;
 }
 
+//got this code from ChatGPT
 function handleTypeConversion(defaultType, type, value, number, key) {
 	if (defaultType === 'string' && type === 'number') {
 		return String(value);
