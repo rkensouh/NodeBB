@@ -15,6 +15,7 @@ const Configs = module.exports;
 
 Meta.config = {};
 
+
 // called after data is loaded from db
 function deserialize(config) {
 	const deserialized = {};
@@ -62,6 +63,8 @@ function handleTypeConversion(defaultType, type, value, number, key) {
 
 	return value;
 }
+
+console.log("Reem")
 
 function handleNumberConversion(number, value, key) {
 	if (!isNaN(number) && isFinite(value)) {

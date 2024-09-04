@@ -11,6 +11,7 @@ const User = require('../src/user');
 const Groups = require('../src/groups');
 const request = require('../src/request');
 
+
 describe('meta', () => {
 	let fooUid;
 	let bazUid;
@@ -571,6 +572,9 @@ describe('meta', () => {
 			assert.equal(response.headers['access-control-allow-origin'], 'mydomain.com');
 			meta.config['access-control-allow-origin-regex'] = oldValue;
 		});
+
+		
+
 	});
 
 	it('should log targets', (done) => {
