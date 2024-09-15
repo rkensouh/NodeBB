@@ -64,8 +64,6 @@ function handleTypeConversion(defaultType, type, value, number, key) {
 	return value;
 }
 
-console.log('Reem');
-
 function handleNumberConversion(number, value, key) {
 	if (!isNaN(number) && isFinite(value)) {
 		return number;

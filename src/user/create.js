@@ -122,8 +122,6 @@ module.exports = function (User) {
 		return userData.uid;
 	}
 
-	console.log('Reem');
-
 	async function storePassword(uid, password) {
 		if (!password) {
 			return;
