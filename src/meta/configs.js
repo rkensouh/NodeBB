@@ -80,9 +80,6 @@ function handleArrayConversion(value, key) {
 	}
 }
 
-console.log('Reem');
-
-
 // called before data is saved to db
 function serialize(config) {
 	const serialized = {};
